@@ -7,14 +7,15 @@ using namespace std;
 
 int main()
 {
-  int value = 588;
+  int value = 1;
   vector<int> values{0, 1, 29123, 123, 3, 4, 4884, 588};
 
   sort(values.begin(), values.end());
 
-  /* for (int i = 0; i < values.size(); i++) { */
-  /*   cout << values[i] << endl; */
-  /* } */
+  for (int i = 0; i < values.size(); i++) {
+    cout << values[i] << " ";
+  }
+  cout << endl;
 
   bool found = false;
 
@@ -29,15 +30,13 @@ int main()
     } else if (value < values[mid_index]) {
       end_pos = mid_index;
       mid_index = end_pos / 2;
-      // Start não, acho que não faz sentido para uma segunda it.
     } else if (value > values[mid_index]) { 
       start_pos = mid_index;
-      end_pos = values.size(); // Eu acho que isso está errado para uma segunda it.
-      mid_index = (start_pos + end_pos) / 2; // 6
+      end_pos = values.size(); 
+      mid_index = (start_pos + end_pos) / 2;
     }
   }
 
-  cout << "\n";
   return 0;
 }
 
