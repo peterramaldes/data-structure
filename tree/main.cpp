@@ -66,7 +66,10 @@ class Tree
     void insert(int value);
     void delete_elem(); // Melhorar esse nodeme
     void find();
-    void print();
+    void pre_order(Node* node);
+    void in_order(Node* node);
+    void pos_order(Node* node);
+    Node* get_root();
 };
 
 Tree::Tree()
@@ -121,12 +124,18 @@ void Tree::find()
   // TODO
 }
 
-void Tree::print() 
-{
-  // TODO: Isso precisa ser recursivo.
-  cout << "root: " << root->get_value() << endl;
-  cout << "right: " << root->get_right()->get_value() << endl;
-  cout << "left: " << root->get_left()->get_value() << endl;
+void Tree::pre_order(Node* node) {
+  cout << "value: " << node->get_value() << endl;
+  
+  if (node->get_left() != NULL)
+    pre_order(node->get_left());
+
+  if (node->get_right() != NULL)
+    pre_order(node->get_right());
+}
+
+Node* Tree::get_root() {
+  return root;
 }
 
 int main()
@@ -135,7 +144,10 @@ int main()
   tree->insert(7);
   tree->insert(14);
   tree->insert(5);
-  tree->print();
+  tree->insert(28);
+  tree->insert(6);
+  tree->insert(4);
+  tree->pre_order(tree->get_root());
   return 0;
 }
 
