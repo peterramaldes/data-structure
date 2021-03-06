@@ -2,144 +2,109 @@
 
 using namespace std;
 
-class Node
-{
+class Node {
   private: 
     Node *left, *right;
     int value;
 
   public: 
     Node(int value);
-    Node* get_left();
-    void set_left(Node* node);
-    Node* get_right();
-    void set_right(Node* node);
-    int get_value();
-    void set_value(int value);
+    Node* getLeft();
+    void setLeft(Node* node);
+    Node* getRight();
+    void setRight(Node* node);
+    int getValue();
+    void setValue(int value);
 };
 
-Node::Node(int value)
-{
+Node::Node(int value) {
   left = NULL;
   right = NULL;
   this->value = value;
 }
 
-Node* Node::get_left() 
-{
+Node* Node::getLeft() {
   return left;
 }
 
-void Node::set_left(Node* node) 
-{
+void Node::setLeft(Node* node) {
   left = node;
 }
 
-Node* Node::get_right() 
-{
+Node* Node::getRight() {
   return right;
 }
 
-void Node::set_right(Node* node) 
-{
+void Node::setRight(Node* node) {
   right = node;
 }
 
-int Node::get_value() 
-{
+int Node::getValue() {
   return value;
 }
 
-void Node::set_value(int value) 
-{
+void Node::setValue(int value) {
   this->value = value;
 }
 
-class Tree
-{
+class Tree {
   private: 
     Node* root;
-    void insert_aux(Node* node, int value);
+    void insertAux(Node* node, int value);
 
   public: 
     Tree();
     void insert(int value);
-    void delete_elem(); // Melhorar esse nodeme
-    void find();
-    void pre_order(Node* node);
-    void in_order(Node* node);
-    void pos_order(Node* node);
-    Node* get_root();
+    void preOrder(Node* node);
+    void inOrder(Node* node);
+    void posOrder(Node* node);
+    Node* getRoot();
 };
 
-Tree::Tree()
-{
+Tree::Tree() {
   root = NULL;
 }
 
-void Tree::insert_aux(Node* node, int value)
-{
-    if (value > node->get_value())
-    {
-      // TODO: Criar uma função insert_right?
-      if (node->get_right() == NULL) 
-      {
+void Tree::insertAux(Node* node, int value) {
+    if (value > node->getValue()) {
+      if (node->getRight() == NULL) {
         Node* new_node = new Node(value);
-        node->set_right(new_node);
-      }
-      else
-        insert_aux(node->get_right(), value);
+        node->setRight(new_node);
+      } else
+          insertAux(node->getRight(), value);
     }
 
-    // TODO: ELSE? E se for igual?
-    if (value < node->get_value())
-    {
-      // TODO: Criar uma função insert_left?
-      if (node->get_left() == NULL) 
-      {
+    if (value < node->getValue()) {
+      if (node->getLeft() == NULL) {
         Node* new_node = new Node(value);
-        node->set_left(new_node);
-      }
-      else
-        insert_aux(node->get_left(), value);
+        node->setLeft(new_node);
+      } else
+          insertAux(node->getLeft(), value);
     }
-
 }
 
-void Tree::insert(int value) 
-{
+void Tree::insert(int value) {
   if (root == NULL)
     root = new Node(value);
   else 
-    insert_aux(root, value);
+    insertAux(root, value);
 }
 
-void Tree::delete_elem() 
-{
-  // TODO
-}
-
-void Tree::find() 
-{
-  // TODO
-}
-
-void Tree::pre_order(Node* node) {
-  cout << "value: " << node->get_value() << endl;
+void Tree::preOrder(Node* node) {
+  cout << "value: " << node->getValue() << endl;
   
-  if (node->get_left() != NULL)
-    pre_order(node->get_left());
+  if (node->getLeft() != NULL)
+    preOrder(node->getLeft());
 
-  if (node->get_right() != NULL)
-    pre_order(node->get_right());
+  if (node->getRight() != NULL)
+    preOrder(node->getRight());
 }
 
-Node* Tree::get_root() {
+Node* Tree::getRoot() {
   return root;
 }
 
-int main()
-{
+int main() {
   Tree *tree = new Tree();
   tree->insert(7);
   tree->insert(14);
@@ -147,7 +112,9 @@ int main()
   tree->insert(28);
   tree->insert(6);
   tree->insert(4);
-  tree->pre_order(tree->get_root());
+
+  tree->preOrder(tree->getRoot());
+
   return 0;
 }
 
