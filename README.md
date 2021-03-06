@@ -1,7 +1,12 @@
 # Estrutura de dados em C++
 
-* Binary search
 * Arvore
+  * insert
+  * delete
+  * find
+  * alterar para `camelCase` e indentar like a java
 * Lista
 * Fila
+* Grafos
 ...
+
