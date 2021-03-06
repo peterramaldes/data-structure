@@ -56,8 +56,6 @@ class Tree {
     Tree();
     void insert(int value);
     void preOrder(Node* node);
-    void inOrder(Node* node);
-    void posOrder(Node* node);
     Node* getRoot();
 };
 
